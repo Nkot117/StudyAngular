@@ -1,3 +1,9 @@
-<h2>{{ member.name }}</h2>
-<div><span>id: {{ member.id }}</span></div>
-<div><span>name: {{ member.name }}</span></div>
+<h2>社員一覧</h2>
+
+<ul class="members">
+    <li *ngFor="let member of members" [class.selected]="member === selectedMember" (click)="onSelect(member)">
+        <span class="badge">{{ member.id }}</span>{{ member.name }}
+    </li>
+</ul>
+
+<app-member-details [member]="selectedMember"></app-member-details>
