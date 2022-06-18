@@ -28,4 +28,17 @@ export class MembersComponent implements OnInit {
     );
   }
 
+  public add(name: string): void {
+    const trimName = name.trim()
+    if(!trimName){
+      return
+    }
+
+    this.memberService.addMember({name} as Member).subscribe(
+      member => {
+        this.members.push(member)
+      }
+    )
+  }
+
 }
