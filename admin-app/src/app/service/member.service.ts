@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { MEMBERS } from './members/member.mock';
-import { Member } from './model/member';
+import { MEMBERS } from '../members/member.mock';
+import { Member } from '../model/member';
 
 import { MessageService } from './message.service'
 import { HttpClient } from '@angular/common/http';
