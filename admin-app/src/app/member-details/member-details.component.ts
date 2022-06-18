@@ -2,6 +2,7 @@ import { Component, Input, OnInit  } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Member } from '../model/member';
 import { MemberService } from '../member.service';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -13,9 +14,11 @@ export class MemberDetailsComponent implements OnInit {
   @Input() member: Member;
 
   constructor(
+    // URLパラメータから値を取得するために利用
     private route: ActivatedRoute,
     private memberService: MemberService,
-    // private location: Location,
+    // 遷移元に戻るために利用
+    private location: Location,
   ) { }
 
   ngOnInit(): void {
@@ -29,6 +32,10 @@ export class MemberDetailsComponent implements OnInit {
     .subscribe(member => {
       this.member = member
     })
+  }
+
+  public goBack():void {
+  this.location.back()
   }
 
 }
