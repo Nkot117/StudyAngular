@@ -27,7 +27,7 @@ export class MemberDetailsComponent implements OnInit {
 
   private getMember():void {
     // URLのパラメータの値を取得する
-    const id = +this.route.snapshot.paramMap.get('id')
+    const id = (this.route.snapshot.paramMap.get('id') as any) as number
     this.memberService.getMember(id)
     .subscribe(member => {
       this.member = member
@@ -35,7 +35,7 @@ export class MemberDetailsComponent implements OnInit {
   }
 
   public goBack():void {
-  this.location.back()
+    this.location.back()
   }
 
 }

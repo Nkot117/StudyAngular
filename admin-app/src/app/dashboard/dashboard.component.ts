@@ -9,13 +9,11 @@ import { MessageService } from '../service/message.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+  // htmlテンプレートから参照するmembers
   public members: Member[] = []
-
 
   constructor(
     private memberService: MemberService,
-    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
