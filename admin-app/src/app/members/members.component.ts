@@ -10,22 +10,15 @@ import { MessageService } from '../message.service';
 })
 export class MembersComponent implements OnInit {
   public members : Member[];
-  public selectedMember: Member;
 
   constructor(
     // 依存性の注入（DI）
     private memberService : MemberService,
-    private messageService: MessageService
   ) { }
 
   // ライフサイクルメソッド
   ngOnInit(): void {
     this.getMembers()
-  }
-
-  public onSelect(member:Member):void {
-    this.selectedMember = member;
-    this.messageService.add(`MembersComponent：社員データ（id=${member.id})が選択されました`)
   }
 
   private getMembers(): void {
