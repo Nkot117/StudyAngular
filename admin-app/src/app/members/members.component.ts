@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { VirtualTimeScheduler } from 'rxjs';
 import { Member } from '../model/member';
 import { MemberService } from '../service/member.service';
 
@@ -39,6 +40,11 @@ export class MembersComponent implements OnInit {
         this.members.push(member)
       }
     )
+  }
+
+  public delete(member: Member): void {
+    this.members = this.members.filter(m => m !== member)
+    this.memberService.deleteMember(member).subscribe();
   }
 
 }
