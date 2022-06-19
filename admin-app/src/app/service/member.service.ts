@@ -6,6 +6,7 @@ import { Member } from '../model/member';
 import { MessageService } from './message.service'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators'
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +62,18 @@ export class MemberService {
       tap(_ => this.log(`社員データ（id=${ id }）を削除しました`)),
       catchError(this.handleError<Member>('deleteMember'))
     )
+  }
+
+  public searchMembers(term: string): Observable<Member[]>{
+    if(term.trim()){
+      return this.http.get<Member[]>(`${this.membersUrl}/?name=${term}`)
+      .pipe(
+        tap(_ => this.log(`${ term }に該当する値が見つかりました`)),
+        catchError(this.handleError<Member[]>('searchMembers', []))
+      )
+    } else {
+        return of([])
+    }
   }
 
   private log(message: string): void {
